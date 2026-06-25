@@ -9,7 +9,7 @@ import {
   stripeRedactionPreset,
 } from "../index";
 
-describe("redact-log", () => {
+describe("redact-engine", () => {
   it("redacts sensitive object keys and token-like strings", () => {
     const value = redactValue({
       apiKey: "sk_live_secret",

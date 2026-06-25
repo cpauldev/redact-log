@@ -1,11 +1,12 @@
 {
-  "name": "redact-log",
+  "name": "redact-engine",
   "version": "0.1.1",
   "license": "MIT",
   "author": "Christian Paul (https://github.com/cpauldev)",
-  "description": "RedactLog is a TypeScript logging and redaction toolkit for safely handling secrets, tokens, credentials, and provider identifiers before they reach logs.",
+  "description": "RedactEngine is a sensitive data redaction engine for TypeScript with recursive object sanitization, string masking, logger wrappers, console bridging, and safe error handling.",
   "keywords": [
     "logging",
+    "data-redaction",
     "redaction",
     "security",
     "typescript",
@@ -35,12 +36,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cpauldev/redact-log.git"
+    "url": "git+https://github.com/cpauldev/redact-engine.git"
   },
   "bugs": {
-    "url": "https://github.com/cpauldev/redact-log/issues"
+    "url": "https://github.com/cpauldev/redact-engine/issues"
   },
-  "homepage": "https://github.com/cpauldev/redact-log#readme",
+  "homepage": "https://github.com/cpauldev/redact-engine#readme",
   "scripts": {
     "build": "tsc",
     "clean": "rm -rf dist",

@@ -78,7 +78,7 @@ export type ConsoleLike = Partial<
 >;
 
 /**
- * Options for initializing a RedactLog custom Logger wrapper.
+ * Options for initializing a RedactEngine custom Logger wrapper.
  */
 export type LoggerOptions = RedactorOptions & {
   /** The underlying Console or target writer stream. */

@@ -6,7 +6,7 @@ export {
   redactString,
   redactValue,
   stripeRedactionPreset,
-} from "./redact-log";
+} from "./redact-engine";
 
 export type {
   ConsoleLike,

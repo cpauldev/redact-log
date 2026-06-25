@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 
 ## [0.1.0] - 2026-06-25
 
-Initial release of `RedactLog`, a redaction-first logging toolkit for TypeScript applications.
+Initial release of `RedactEngine`, a redaction-first logging toolkit for TypeScript applications.
 
 ### Added
 

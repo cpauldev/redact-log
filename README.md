@@ -1,22 +1,22 @@
-<img src="https://raw.githubusercontent.com/cpauldev/redact-log/main/banner.png" alt="RedactLog Banner" width="100%" />
+<img src="https://raw.githubusercontent.com/cpauldev/redact-engine/main/banner.png" alt="RedactEngine Banner" width="100%" />
 
-# RedactLog: Redaction-First Logging for TypeScript
+# RedactEngine: Sensitive Data Redaction for TypeScript
 
-![TypeScript](https://img.shields.io/badge/-TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white) ![Logging](https://img.shields.io/badge/-Logging-4F46E5?style=flat-square) ![Console](https://img.shields.io/badge/-Console_Bridge-06B6D4?style=flat-square) ![License](https://img.shields.io/badge/-MIT_License-blue?style=flat-square) [![Changelog](https://img.shields.io/badge/Changelog-v0.1.1-blue?style=flat-square)](./CHANGELOG.md)
+![TypeScript](https://img.shields.io/badge/-TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white) ![Redaction](https://img.shields.io/badge/-Data_Redaction-4F46E5?style=flat-square) ![Console](https://img.shields.io/badge/-Console_Bridge-06B6D4?style=flat-square) ![License](https://img.shields.io/badge/-MIT_License-blue?style=flat-square) [![Changelog](https://img.shields.io/badge/Changelog-v0.1.1-blue?style=flat-square)](./CHANGELOG.md)
 
-RedactLog is a small, framework-agnostic TypeScript toolkit for removing secrets, credentials, cookies, JWTs, provider identifiers, and sensitive object fields before data reaches logs. It gives your app one redaction layer instead of relying on every callsite to remember what is safe to print.
+RedactEngine is a sensitive data redaction engine for TypeScript with recursive object sanitization, string masking, logger wrappers, console bridging, and safe error handling. It gives your app one redaction layer instead of relying on every callsite to remember what is safe to print.
 
 It is designed for developers building APIs, SaaS dashboards, CLIs, workers, billing flows, auth systems, or webhook handlers where logs are necessary but accidental secret exposure is costly. Use it when you want safe console output, structured logging inputs, provider-specific presets, and predictable handling for nested objects, `Error`, `Map`, `Set`, circular values, and max-depth limits.
 
 #### 🤖 Ask your coding assistant
 
-> "Audit my codebase to see if adding the `redact-log` package on npm is beneficial. If so, explain why and draft an integration plan identifying logger entrypoints, custom redaction rules, provider presets, and console bridge points using the package README and source code."
+> "Audit my codebase to see if adding the `redact-engine` package on npm is beneficial. If so, explain why and draft an integration plan identifying logger entrypoints, custom redaction rules, provider presets, and console bridge points using the package README and source code."
 
 ---
 
-## Why use RedactLog?
+## Why use RedactEngine?
 
-| Feature              | Without RedactLog                                                                | With **RedactLog**                                                                              |
+| Feature              | Without RedactEngine                                                                | With **RedactEngine**                                                                              |
 | :------------------- | :------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------- |
 | **Sensitive Fields** | Every logger call needs manual filtering.                                        | 🛡️ **Sensitive Fields.** Central key-pattern redaction handles common secret names.             |
 | **Token Strings**    | Bearer tokens, JWTs, cookies, and assignment-style secrets can leak in messages. | 🎟️ **Token Strings.** String rules redact common token formats anywhere in text.                |
@@ -28,20 +28,20 @@ It is designed for developers building APIs, SaaS dashboards, CLIs, workers, bil
 
 ## Installation
 
-Install RedactLog via your preferred package manager:
+Install RedactEngine via your preferred package manager:
 
 ```bash
 # npm
-npm install redact-log
+npm install redact-engine
 
 # yarn
-yarn add redact-log
+yarn add redact-engine
 
 # pnpm
-pnpm add redact-log
+pnpm add redact-engine
 
 # bun
-bun add redact-log
+bun add redact-engine
 ```
 
 ---
@@ -49,7 +49,7 @@ bun add redact-log
 ## Quick Start
 
 ```ts
-import { createLogger, stripeRedactionPreset } from "redact-log";
+import { createLogger, stripeRedactionPreset } from "redact-engine";
 
 const logger = createLogger({
   level: "info",
@@ -83,7 +83,7 @@ Output values are redacted before they are passed to the underlying console sink
 ### Redact strings
 
 ```ts
-import { redactString } from "redact-log";
+import { redactString } from "redact-engine";
 
 redactString("Authorization: Bearer secret-token");
 // "Authorization: Bearer [REDACTED]"
@@ -92,7 +92,7 @@ redactString("Authorization: Bearer secret-token");
 ### Redact structured values
 
 ```ts
-import { redactValue } from "redact-log";
+import { redactValue } from "redact-engine";
 
 const safe = redactValue({
   email: "person@example.com",
@@ -106,7 +106,7 @@ const safe = redactValue({
 ### Create a custom redactor
 
 ```ts
-import { createRedactor } from "redact-log";
+import { createRedactor } from "redact-engine";
 
 const redactor = createRedactor({
   keyPatterns: [/tenantSecret/i],
@@ -124,7 +124,7 @@ const safe = redactor.redactValue(payload);
 ### Bridge existing console calls
 
 ```ts
-import { createConsoleBridge, createLogger } from "redact-log";
+import { createConsoleBridge, createLogger } from "redact-engine";
 
 const logger = createLogger({ level: "warn" });
 const restoreConsole = createConsoleBridge(logger);
